@@ -1,25 +1,20 @@
 import _ from 'lodash';
 import './style.css';
+import { Gameboard, Ship } from './classes';
 
 const content = document.getElementById('content');
 
-class Ship {
-    constructor(length, hits, sunk){
-        this.length = length,
-        this.hits = hits,
-        this.sunk = sunk
-    }
+const gameboard = new Gameboard();
 
-    hit(){
-        this.hits = this.hits + 1;
-    }
+gameboard.generateBoard();
 
-    isSunk(){
-        if(this.hits >= this.length){
-            this.sunk = true;
-        } else {
-            this.sunk = false;
-        }
-    }
-};
+document.addEventListener('click', function(event){
+    let col = event.target.getAttribute('column');
+    let row = event.target.parentNode.getAttribute('row');
+    let postCoord = [{row, col}];
 
+    // console.log(postCoord)
+
+    gameboard.placeShip(3, postCoord);
+    // console.log(gameboard.playerShips);
+})
