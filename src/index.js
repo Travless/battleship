@@ -3,8 +3,23 @@ import './style.css';
 
 const content = document.getElementById('content');
 
-const helloText = document.createElement('div');
-helloText.classList.add('hello');
-helloText.innerText = 'Hello';
+class Ship {
+    constructor(length, hits, sunk){
+        this.length = length,
+        this.hits = hits,
+        this.sunk = sunk
+    }
 
-content.append(helloText);
+    hit(){
+        this.hits = this.hits + 1;
+    }
+
+    isSunk(){
+        if(this.hits >= this.length){
+            this.sunk = true;
+        } else {
+            this.sunk = false;
+        }
+    }
+};
+
