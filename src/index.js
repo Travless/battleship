@@ -9,35 +9,60 @@ const content = document.getElementById('content');
 
 function generatePage(){
     const pageCont = document.createElement('div');
-    pageCont.setAttribute('id', 'page-cont');
+    pageCont.classList.add('page-cont');
+    content.append(pageCont);
 
     const turnCont = document.createElement('div');
-    turnCont.setAttribute('id', 'turn-cont');
+    turnCont.classList.add('turn-cont');
     pageCont.append(turnCont);
 
     const turnSpan = document.createElement('span');
-    turnSpan.setAttribute('id', 'turn-span');
+    turnSpan.classList.add('turn-span');
+    turnSpan.innerText = 'Turn: ';
     turnCont.append(turnSpan);
 
     const infoCont = document.createElement('div');
-    infoCont.setAttribute('id', 'info-cont');
+    infoCont.classList.add('info-cont');
     pageCont.append(infoCont);
 
     const infoSpan = document.createElement('span');
-    infoSpan.setAttribute('id', 'info-span');
+    infoSpan.classList.add('info-span');
+    infoSpan.innerText = 'Info: ';
     infoCont.append(infoSpan);
 
-    let gameboard = generateBoard();
+    // let gameboard = generateBoard();
+    const gameboard = document.createElement('div');
+    gameboard.classList.add('gameboard');
+    pageCont.append(gameboard);
 
     const optionsCont = document.createElement('div');
-    optionsCont.setAttribute('id', 'options-cont');
+    optionsCont.classList.add('options-cont');
     pageCont.append(optionsCont);
 
-    const carrierPreview = shipPreviewGen(carrier);
-    const battleshipPreview = shipPreviewGen(battleship);
-    const cruiserPreview = shipPreviewGen(cruiser);
-    const submarinePreview = shipPreviewGen(submarine);
-    const destroyerPreview = shipPreviewGen(destroyer);
+    const carrierPreview = document.createElement('div');
+    carrierPreview.classList.add('carrier-preview');
+    carrierPreview.classList.add('carrier');
+    optionsCont.append(carrierPreview);
+
+    const battleshipPreview = document.createElement('div');
+    battleshipPreview.classList.add('battleship-preview');
+    battleshipPreview.classList.add('battleship');
+    optionsCont.append(battleshipPreview);
+
+    const cruiserPreview = document.createElement('div');
+    cruiserPreview.classList.add('cruiser-preview');
+    cruiserPreview.classList.add('cruiser');
+    optionsCont.append(cruiserPreview);
+
+    const submarinePreview = document.createElement('div');
+    submarinePreview.classList.add('submarine-preview');
+    submarinePreview.classList.add('submarine');
+    optionsCont.append(submarinePreview);
+
+    const destroyerPreview = document.createElement('div');
+    destroyerPreview.classList.add('destroyer-preview');
+    destroyerPreview.classList.add('destroyer');
+    optionsCont.append(destroyerPreview);
 
     return pageCont;
 }
@@ -72,3 +97,4 @@ function generateBoard(){
 
 const page = generatePage();
 content.append(page);
+
