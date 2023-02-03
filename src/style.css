@@ -21,6 +21,8 @@
 .game-board {
     width: 200px;
     height: 200px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .block {
