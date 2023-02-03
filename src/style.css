@@ -89,3 +89,15 @@
 .carrier {
     background-color: blue;
 }
+
+.hover {
+    background-color: grey;
+}
+
+.boom {
+    background-color: red;
+}
+
+.empty {
+    background-color: grey;
+}
