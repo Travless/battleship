@@ -21,13 +21,23 @@ flipButton.addEventListener('click', flip);
 // Creating Boards
 const width = 10;
 
-function createBoard(){
+function createBoard(color, user){
     const gameBoardCont = document.createElement('div');
     gameBoardCont.classList.add('game-board');
-    gameBoardCont.style.backgroundColor = 'pink';
+    gameBoardCont.style.backgroundColor = color;
+    gameBoardCont.id = user;
+
+    for(let i = 0; i < width * width; i++){
+        const block = document.createElement('div');
+        block.classList.add('block');
+        block.id = i;
+        gameBoardCont.append(block);
+    }
 
     gameboardsCont.append(gameBoardCont);
 }
 
-createBoard();
-createBoard();
+
+
+createBoard('yellow', 'player');
+createBoard('pink', 'computer');

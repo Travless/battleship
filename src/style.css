@@ -12,9 +12,20 @@
     align-items: center;
 }
 
+#gameboard-cont {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+}
+
 .game-board {
     width: 200px;
     height: 200px;
+}
+
+.block {
+    width: 20px;
+    height: 20px;
 }
 
 .options-cont {
