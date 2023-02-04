@@ -36,21 +36,7 @@ export function createGameboard(){
 
         placeShip(size, row, col){
             const ship = createShip(size);
-            const originSpace = createSpace(row, col);
-            originSpace.row = originSpace.row - 1;
-            for(let i = 0; i < this.playerShips.length; i++){
-                for(let j = 0; j < size; j++){
-                    originSpace.row = originSpace.row + 1;
-                    console.log(originSpace);
-                    if(JSON.stringify(this.playerShips[i][j]) === JSON.stringify(originSpace)){
-                        console.log('space taken');
-                        return;
-                    } else {
-                        console.log('spot available');
-                        // ship.spaces.push(originSpace);
-                    }
-                }
-            }
+            
             // console.log(ship.spaces);
 
         }
