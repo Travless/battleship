@@ -1,6 +1,6 @@
 import _, { lowerFirst } from 'lodash';
 import './style.css';
-import { createGameboard, createSpace, createShip } from './classes';
+import { Ship } from './classes';
 
 
 // Element Selectors
@@ -34,11 +34,22 @@ const width = 10;
 
 // Function that generates the gameboard for the user
 function createBoard(color, user){
+    const boardCompleteCont = document.createElement('div');
     const gameBoardCont = document.createElement('div');
+    const displayName = document.createElement('div');
+
+    // Container
+    boardCompleteCont.classList.add('board-complete');
+
+    // Board
     gameBoardCont.classList.add('game-board');
     gameBoardCont.style.backgroundColor = color;
     // Provides link to the user who the board is being used by
     gameBoardCont.id = user;
+
+    // Player Name
+    displayName.classList.add('display-name');
+    displayName.innerText = `${user.toUpperCase()}`;
 
     // For loop that creates a set amount of divs that will represent the spaces on the board
     for(let i = 0; i < width * width; i++){
@@ -48,24 +59,19 @@ function createBoard(color, user){
         gameBoardCont.append(block);
     }
 
-    gameboardsCont.append(gameBoardCont);
+    boardCompleteCont.append(gameBoardCont);
+    boardCompleteCont.append(displayName);
+    gameboardsCont.append(boardCompleteCont);
 }
 
-createBoard('yellow', 'player');
-createBoard('pink', 'computer');
+createBoard('#2a508c', 'player');
+createBoard('#2a508c', 'computer');
 
 
 
 
 // CREATING SHIPS
 
-// Ship class that is used to generate ship objects
-class Ship {
-    constructor(name, length){
-        this.name = name;
-        this.length = length;
-    }
-}
 
 // Each ship piece defined and generated via the Ship class
 const destroyer = new Ship('destroyer', 2);
@@ -206,13 +212,13 @@ let playerTurn;
 function startGame(){
     if(playerTurn === undefined){
         if (optionsCont.children.length != 0) {
-            infoDisplay.textContent = 'Please place all of your pieces first!'
+            infoDisplay.textContent = 'Please place all of your pieces first'
         } else {
             const allBoardBlocks = document.querySelectorAll('#computer div');
             allBoardBlocks.forEach(block => block.addEventListener('click', handleClick));
             playerTurn = true;
-            turnDisplay.textContent = 'Your Go!';
-            infoDisplay.textContent = 'The game has started!'
+            turnDisplay.textContent = 'Player Go';
+            infoDisplay.textContent = 'The game has started'
         }
     }
 }
@@ -231,7 +237,7 @@ function handleClick(e){
     if(!gameOver){
         if(e.target.classList.contains('taken')){
             e.target.classList.add('boom');
-            infoDisplay.textContent = "You hit the computer's ship!";
+            infoDisplay.textContent = "You hit the computer's ship";
             let classes = Array.from(e.target.classList)
             classes = classes.filter(className => className !== 'block')
             classes = classes.filter(className => className !== 'boom')
@@ -254,7 +260,7 @@ function handleClick(e){
 function computerGo(){
     // If the game is still ongoing, turnDisplay and infoDisplay will relay that the computer is processing its move
     if(!gameOver){
-        turnDisplay.textContent = 'Computer Go!';
+        turnDisplay.textContent = 'Computer Go';
         infoDisplay.textContent = 'The computer is thinking...';
 
         // Set a timeout that is used to time the computer's decision to seem as though it is processing by 3000ms
@@ -271,7 +277,7 @@ function computerGo(){
                 return
             }else if(allBoardBlocks[randomGo].classList.contains('taken') && !allBoardBlocks[randomGo].classList.contains('boom')){
                 allBoardBlocks[randomGo].classList.add('boom');
-                infoDisplay.textContent = 'The computer hit your ship!';
+                infoDisplay.textContent = 'The computer hit your ship';
                 let classes = Array.from(allBoardBlocks[randomGo].classList)
                 classes = classes.filter(className => className !== 'block')
                 classes = classes.filter(className => className !== 'boom')
@@ -286,7 +292,7 @@ function computerGo(){
         // Set a timeout for 6000ms, that sets up the player's move
         setTimeout(() => {
             playerTurn = true;
-            turnDisplay.textContent = 'Your Go!';
+            turnDisplay.textContent = 'Player Go';
             infoDisplay.textContent = 'Please take your go.'
             const allBoardBlocks = document.querySelectorAll('#computer div')
             allBoardBlocks.forEach(block => block.addEventListener('click', handleClick));
@@ -306,11 +312,11 @@ function checkScore(user, userHits, userSunkShips){
             // if so, a check will be done to see if it's the player's ship or the computer's ship and will filter out the ship from the array holding the current hits
             // Finally, the ship name will be pushed into the respective user's sunken ship array to keep track of the ships that are currently no longer in play and should be counted towards the end goal
             if(user === 'player') {
-                infoDisplay.textContent = `You sunk the computer's ${shipName}!`;
+                infoDisplay.textContent = `You sunk the computer's ${shipName}`;
                 playerHits = userHits.filter(storedShipName => storedShipName !== shipName)
             }
             if(user === 'computer') {
-                infoDisplay.textContent = `The computer sunk your ${shipName}!`;
+                infoDisplay.textContent = `The computer sunk your ${shipName}`;
                 computerHits = userHits.filter(storedShipName => storedShipName !== shipName)
             }
             userSunkShips.push(shipName);
@@ -329,11 +335,11 @@ function checkScore(user, userHits, userSunkShips){
 
     // If the length of either the player or computer's sunken ship array equals 5, gameOver will be triggered to true, ending the game and providing the delaritive win/loss message
     if(playerSunkShips.length === 5){
-        infoDisplay.textContent = "You sunk all of the computer's sunk ships. You won!"
+        infoDisplay.textContent = "You sunk all of the computer's sunk ships. You won"
         gameOver = true;
     }
     if(computerSunkShips.length === 5){
-        infoDisplay.textContent = "The computer has sunk all of your ships. You lose!"
+        infoDisplay.textContent = "The computer has sunk all of your ships. You lose"
         gameOver = true;
     }
 }

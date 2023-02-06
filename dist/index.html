@@ -9,23 +9,31 @@
     <title>Battleship</title>
 </head>
 <body>
-    <div class="page-cont">
-        <div class="turn-cont">Turn: 
-            <span id="turn" class="turn-span"></span>
+    <div class="body">
+        <div class="title">Battleship</div>
+        <div class="page-cont">
+            <div class="turn-cont">Turn - 
+                <span id="turn" class="turn-span"></span>
+            </div>
+            <div class="info-cont">Info - 
+                <span id="info" class="info-span"></span>
+            </div>
+            <div id="gameboard-cont"></div>
+            <div class="player-pieces-cont">
+                <div class="player-pieces-title">Ships Available</div>
+                <div class="options-cont">
+                    <div id="4" class="carrier-preview carrier" draggable=""></div>
+                    <div id="3" class="battleship-preview battleship" draggable=""></div>
+                    <div id="2" class="cruiser-preview cruiser" draggable=""></div>
+                    <div id="1" class="submarine-preview submarine" draggable=""></div>
+                    <div id="0" class="destroyer-preview destroyer"draggable></div>
+                </div>
+            </div>
+            <div class="button-cont">
+                <button class="flip-buttton" id="flip-button">FLIP</button>
+                <button class="start-button" id="start-button">START</button>
+            </div>
         </div>
-        <div class="info-cont">Info: 
-            <span id="info" class="info-span"></span>
-        </div>
-        <div id="gameboard-cont"></div>
-        <div class="options-cont">
-            <div id="4" class="carrier-preview carrier" draggable=""></div>
-            <div id="3" class="battleship-preview battleship" draggable=""></div>
-            <div id="2" class="cruiser-preview cruiser" draggable=""></div>
-            <div id="1" class="submarine-preview submarine" draggable=""></div>
-            <div id="0" class="destroyer-preview destroyer"draggable></div>
-        </div>
-        <button class="flip-buttton" id="flip-button">FLIP</button>
-        <button class="start-button" id="start-button">START</button>
     </div>
 </body>
 </html>
